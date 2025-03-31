@@ -1,0 +1,71 @@
+/* Ensure full-page coverage */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Flex container to align sidebar, map, and right panel */
+.map-container {
+  display: flex;
+  width: 100vw; /* Ensure full width */
+  height: 100vh; /* Ensure full height */
+}
+
+/* Sidebar (Search Section) */
+.sidebar {
+  width: 20%;
+  min-width: 250px;
+  padding: 15px;
+  background: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+/* Input Styling */
+.sidebar input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Map Section - Ensuring it Stretches Fully */
+.map-section {
+  flex-grow: 1;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Map Styling */
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Right-Side Info Panel */
+.info-section {
+  width: 20%;
+  min-width: 250px;
+  padding: 15px;
+  background: #e3e3e3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Fix any overflow issues */
+.leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+}

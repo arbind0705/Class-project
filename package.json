@@ -1,0 +1,22 @@
+{
+  "name": "travel-planner",
+  "version": "1.0.0",
+  "description": "A travel planner app that calculates itineraries based on user preferences.",
+  "main": "webserver.js",
+  "scripts": {
+    "start": "npm run dev\"",
+    "dev": "vite"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "concurrently": "^7.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^6.2.4"
+  }
+}

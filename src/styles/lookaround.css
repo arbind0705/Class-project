@@ -1,0 +1,146 @@
+/* General Page Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Search Bar Styling */
+  .search-container {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 18px;
+    border: 2px solid #ff69b4;
+    border-radius: 50px;
+    outline: none;
+    transition: 0.3s;
+  }
+  
+  .search-input:focus {
+    border-color: #ff1493;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+  }
+  
+  .search-btn {
+    position: absolute;
+    right: 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    color: #ff69b4;
+    transition: 0.3s;
+  }
+  
+  .search-btn:hover {
+    color: #ff1493;
+  }
+  
+  /* Table Styling */
+  .table-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  th, td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    text-align: center;
+  }
+  
+  th {
+    background: rgba(255, 255, 255, 0.3);
+    color: #ff69b4;
+    font-size: 18px;
+  }
+  
+  td {
+    font-size: 16px;
+  }
+  
+  /* Favorite Button */
+  .fav-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 22px;
+    transition: transform 0.2s ease-in-out;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .fav-btn:hover {
+    transform: scale(1.2);
+    color: gold;
+  }
+  
+  .fav-btn.active {
+    color: gold;
+  }
+  
+  /* Pagination Buttons */
+  .pagination {
+    margin-top: 15px;
+  }
+  
+  .pagination button {
+    background: #ff69b4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 10px;
+    transition: 0.3s;
+  }
+  
+  .pagination button:hover {
+    background: #ff1493;
+  }
+  
+  /* Floating Favorite List Button */
+  .fav-list-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff69b4;
+    color: yellow;
+    border: none;
+    padding: 15px 20px;
+    font-size: 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 105, 180, 0.6);
+  }
+  
+  .fav-list-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 105, 180, 0.9);
+  }
+  
