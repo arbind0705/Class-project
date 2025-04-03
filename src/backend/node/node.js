@@ -27,6 +27,35 @@ app.get("/place-id", async (req, res) => {
     }
 });
 
+// Fetch Country List (Static or API-based)
+app.get("/countries", async (req, res) => {
+    // For simplicity, let's return a static list of countries
+    const countries = [
+        { id: "IN", name: "India" },
+        { id: "US", name: "United States" },
+        { id: "GB", name: "United Kingdom" },
+        { id: "CA", name: "Canada" },
+        { id: "AU", name: "Australia" },
+        // Add more countries as needed
+    ];
+    
+    res.json(countries);
+});
+
+// Fetch Places List (Static or API-based)
+app.get("/places", async (req, res) => {
+    // Simulate fetching places (can be expanded based on your needs)
+    const places = [
+        { id: "delhi", name: "Delhi" },
+        { id: "nyc", name: "New York City" },
+        { id: "london", name: "London" },
+        { id: "sydney", name: "Sydney" },
+        // Add more places as needed
+    ];
+    
+    res.json(places);
+});
+
 // Fetch Flight Data
 app.get("/flights", async (req, res) => {
     const { from, to, departDate = "2025-04-10" } = req.query;

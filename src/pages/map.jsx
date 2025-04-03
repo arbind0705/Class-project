@@ -4,6 +4,21 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import "../styles/map.css"; // Import CSS
 
+// Fix for default marker icons in react-leaflet
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
+
 // Custom Icons for Different Places
 const icons = {
   tourist: new L.Icon({ iconUrl: "/tourist.png", iconSize: [30, 30] }),
@@ -28,7 +43,7 @@ const MapPage = () => {
   );
 
   return (
-    <div className="map-container">
+    <div className="map-page">
       {/* Sidebar for Search */}
       <div className="sidebar">
         <h2>Find Places</h2>
@@ -46,23 +61,32 @@ const MapPage = () => {
       </div>
 
       {/* Map Section */}
-      <div className="map-section">
-        <MapContainer center={[51.505, -0.09]} zoom={13} className="map">
+      <div className="map-container">
+        <MapContainer 
+          center={[51.505, -0.09]} 
+          zoom={13} 
+          scrollWheelZoom={true}
+          style={{ height: "100%", width: "100%" }}
+        >
           <TileLayer
-            url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="&copy; OpenStreetMap contributors"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           {filteredPlaces.map((place, index) => (
-            <Marker key={index} position={place.coords} icon={icons[place.type]}>
+            <Marker 
+              key={index} 
+              position={place.coords}
+              icon={DefaultIcon}
+            >
               <Popup>{place.name}</Popup>
             </Marker>
           ))}
         </MapContainer>
       </div>
 
-      {/* Right-Side Info Panel */}
-      <div className="info-section">
-        <h2>Route Information</h2>
+      {/* Route Box */}
+      <div className="route-box">
+        <h3>Route Information</h3>
         <p>Best travel route will be displayed here.</p>
       </div>
     </div>
