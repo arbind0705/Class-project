@@ -43,28 +43,51 @@ double calculatePlaceValue(const Place& place) {
 vector<Place> knapsackPlanner(vector<Place>& places, int budget, int days, int& remainingBudget, int& remainingDays) {
     int n = places.size();
     
-    // Sort places by value per day
-    sort(places.begin(), places.end(), [](const Place& a, const Place& b) {
-        return calculatePlaceValue(a) / a.daysNeeded > calculatePlaceValue(b) / b.daysNeeded;
-    });
+    // Create a 3D DP table: [place_index][budget][days]
+    vector<vector<vector<double>>> dp(n + 1, vector<vector<double>>(budget + 1, vector<double>(days + 1, 0)));
+    vector<vector<vector<bool>>> selected(n + 1, vector<vector<bool>>(budget + 1, vector<bool>(days + 1, false)));
     
-    vector<Place> selectedPlaces;
-    remainingBudget = budget;
-    remainingDays = days;
-    
-    // Select places while we have enough budget and days
-    for (const auto& place : places) {
-        if (remainingDays >= place.daysNeeded && remainingBudget >= place.totalCost) {
-            selectedPlaces.push_back(place);
-            remainingBudget -= place.totalCost;
-            remainingDays -= place.daysNeeded;
-        }
-        
-        // Stop if we don't have enough days left
-        if (remainingDays < 2) {  // Keep at least 2 days as buffer
-            break;
+    // Fill the DP table
+    for (int i = 1; i <= n; i++) {
+        for (int b = 0; b <= budget; b++) {
+            for (int d = 0; d <= days; d++) {
+                // Don't include the current place
+                dp[i][b][d] = dp[i-1][b][d];
+                
+                // Try to include the current place if we have enough budget and days
+                if (b >= places[i-1].totalCost && d >= places[i-1].daysNeeded) {
+                    double value = calculatePlaceValue(places[i-1]) + dp[i-1][b - places[i-1].totalCost][d - places[i-1].daysNeeded];
+                    if (value > dp[i][b][d]) {
+                        dp[i][b][d] = value;
+                        selected[i][b][d] = true;
+                    }
+                }
+            }
         }
     }
+    
+    // Backtrack to find selected places
+    vector<Place> selectedPlaces;
+    int b = budget;
+    int d = days;
+    
+    for (int i = n; i > 0; i--) {
+        if (selected[i][b][d]) {
+            selectedPlaces.push_back(places[i-1]);
+            b -= places[i-1].totalCost;
+            d -= places[i-1].daysNeeded;
+        }
+    }
+    
+    // Calculate the total cost of selected places
+    int totalCost = 0;
+    for (const auto& place : selectedPlaces) {
+        totalCost += place.totalCost;
+    }
+    
+    // Set the remaining budget and days
+    remainingBudget = budget - totalCost;
+    remainingDays = days - d;
     
     return selectedPlaces;
 }

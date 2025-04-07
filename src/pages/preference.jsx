@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../styles/preference.css";
 import vid2 from "../assets/vid 2.mp4";
 import DataService from "../services/dataService";
@@ -21,6 +21,16 @@ const PreferencePage = () => {
   const [showPlaceList, setShowPlaceList] = useState(false);
   const [showActivityList, setShowActivityList] = useState(false);
   const [response, setResponse] = useState(null);
+  const resultsBoxRef = useRef(null);
+
+  // Scroll to results box when it appears
+  useEffect(() => {
+    if (statusMessage === "Preferences processed successfully!" && resultsBoxRef.current) {
+      setTimeout(() => {
+        resultsBoxRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, [statusMessage]);
 
   // Fetch countries based on travel type
   useEffect(() => {
@@ -145,7 +155,7 @@ const PreferencePage = () => {
   };
 
   return (
-    <div className="preference-page">
+    <div className={`preference-page ${statusMessage === "Preferences processed successfully!" ? "results-shown" : ""}`}>
       <video className="background-video" autoPlay loop muted>
         <source src={vid2} type="video/mp4" />
       </video>
@@ -168,10 +178,10 @@ const PreferencePage = () => {
             International
           </button>
           <button
-            className={`preference-button ${selectedType === "Inter-national" ? "active" : ""}`}
-            onClick={() => setSelectedType("Inter-national")}
+            className={`preference-button ${selectedType === "Inter Countries" ? "active" : ""}`}
+            onClick={() => setSelectedType("Inter Countries")}
           >
-            Inter-national
+            Inter Countries
           </button>
         </div>
 
@@ -332,7 +342,7 @@ const PreferencePage = () => {
 
       {/* Results Section - Separated from the main content box */}
       {statusMessage === "Preferences processed successfully!" && response?.data && (
-        <div className="results-box">
+        <div className="results-box" ref={resultsBoxRef}>
           <h2 className="results-title">Your Optimized Travel Plan</h2>
           <div className="results-content">
             {(response.data.selectedPlaces || []).map((place, index) => (

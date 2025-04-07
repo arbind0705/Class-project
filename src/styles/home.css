@@ -257,6 +257,7 @@
 /* Login Button */
 .login {
   background: linear-gradient(135deg, #555, #333);
+  display: none; /* Hide the profile button */
 }
 
 .login:hover .button {
