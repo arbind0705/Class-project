@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  base: '/Sem-4/',
   root: 'src', // Set the root directory where Vite should look for files
   build: {
     outDir: '../dist', // Output directory after building the project
