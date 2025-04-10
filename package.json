@@ -1,5 +1,5 @@
 {
-  "name": "Travel-planning-app",
+  "name": "travel_planning_app",
   "version": "1.0.0",
   "description": "A travel planner app that calculates itineraries based on user preferences.",
   "main": "webserver.js",
