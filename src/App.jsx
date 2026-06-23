@@ -8,7 +8,10 @@ import './App.css';
 
 function App() {
   return (
-    <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+   <Router
+  basename={import.meta.env.BASE_URL}
+  future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+>
       <div className="App">
         <Routes>
           <Route path="/" element={<HomePage />} />
