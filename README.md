@@ -1,70 +1,233 @@
-# Getting Started with Create React App
+# Travel Planning App 🌍✈️
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A smart travel planning application that helps users discover destinations, optimize travel routes, and create personalized itineraries based on preferences, budget, and duration.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+* 🏠 Interactive home page with dynamic backgrounds.
+* 🌍 Browse destinations from different countries.
+* 📍 Explore locations on an interactive map using Leaflet.
+* 💰 Plan trips according to budget and duration.
+* 🎯 Select countries, places, and activities.
+* ⚡ Backend API support using Express.
+* 🚀 Built with React and Vite.
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend
 
-### `npm test`
+* React
+* React Router
+* Vite
+* React Leaflet
+* CSS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend
 
-### `npm run build`
+* Node.js
+* Express
+* CORS
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Project Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```text
+Travel-planning-app/
+│
+├── src/
+│   ├── assets/
+│   ├── pages/
+│   ├── styles/
+│   ├── services/
+│   ├── data/
+│   ├── App.jsx
+│   └── index.jsx
+│
+├── webserver.js
+├── package.json
+├── vite.config.js
+└── README.md
+```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Clone the repository:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+git clone <repository-url>
+cd Travel-planning-app
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Install dependencies:
 
-## Learn More
+```bash
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Running the Project
 
-### Code Splitting
+## Option 1: Start frontend and backend together
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+npm start
+```
 
-### Analyzing the Bundle Size
+This command starts:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* Express backend (`webserver.js`)
+* Vite development server
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Option 2: Start separately
 
-### Advanced Configuration
+### Terminal 1 – Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+node webserver.js
+```
 
-### Deployment
+Backend runs on:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```text
+http://localhost:5000
+```
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Terminal 2 – Frontend
+
+```bash
+npm run dev
+```
+
+Frontend runs on:
+
+```text
+http://localhost:5173/Sem-4/
+```
+
+---
+
+# Important Router Configuration
+
+In `App.jsx`, use:
+
+```jsx
+<Router
+  basename={import.meta.env.BASE_URL}
+  future={{
+    v7_startTransition: true,
+    v7_relativeSplatPath: true
+  }}
+>
+```
+
+This ensures compatibility with GitHub Pages deployment.
+
+---
+
+# Available Routes
+
+| Route         | Description            |
+| ------------- | ---------------------- |
+| `/`           | Home Page              |
+| `/preference` | Travel Preference Page |
+| `/lookaround` | Browse Destinations    |
+| `/map`        | Interactive Map        |
+
+---
+
+# Home Page
+
+* Dynamic image backgrounds.
+* Smart travel planning information.
+* Navigation to preference, destination, and map pages.
+
+---
+
+# Preference Page
+
+Users can:
+
+* Choose travel type.
+* Enter budget.
+* Select trip duration.
+* Select countries.
+* Choose places.
+* Choose activities.
+* Generate optimized travel recommendations.
+
+---
+
+# Lookaround Page
+
+Provides:
+
+* Destination browsing.
+* Search functionality.
+* Favorites feature.
+* Ratings and descriptions.
+
+---
+
+# Map Page
+
+Built using Leaflet and OpenStreetMap.
+
+Features:
+
+* Search places by country or city.
+* Interactive markers.
+* Detailed location information.
+* Dynamic map navigation.
+
+---
+
+# Build for Production
+
+```bash
+npm run build
+```
+
+Preview production build:
+
+```bash
+npm run preview
+```
+
+---
+
+# Deployment
+
+Deploy to GitHub Pages:
+
+```bash
+npm run deploy
+```
+
+---
+
+# Future Enhancements
+
+* AI-based itinerary optimization.
+* Hotel recommendations.
+* Activity recommendation engine.
+* Real-time travel information.
+* Weather integration.
+* Flight and transportation APIs.
+
+---
+
+# Author
+
+Semester 4 Project
+
+Travel Planning and Optimization System using route optimization and intelligent destination selection.
